@@ -11,10 +11,9 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.post('/chat', async (req, res) => {
+app.post((process.env.ENDPOINT || '/chat'), async (req, res) => {
   const { message } = req.body;
-  let response = await processMessage(message); 
-  console.log(response)
+  let response = await processMessage(message);
   res.send(response);
 });
 
